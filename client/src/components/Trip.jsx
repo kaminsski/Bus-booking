@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BiSolidPurchaseTag } from "react-icons/bi";
 import { FaBus } from "react-icons/fa";
 import { MdEventSeat } from "react-icons/md";
@@ -8,6 +8,8 @@ import { IoIosWarning } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { SlLogin } from "react-icons/sl";
 
+import { getTripsAllAction } from "../redux/actions/trip";
+
 function Trip() {
   const dispatch = useDispatch();
 
@@ -15,6 +17,11 @@ function Trip() {
   const { lang } = useSelector((state) => state.lang);
 
   const { tripRx } = useSelector((state) => state.tripRx);
+
+useEffect(() => {
+  dispatch(getTripsAllAction())
+}, [])
+
 
   return (
     <div className=" ">
@@ -64,7 +71,7 @@ function Trip() {
               <div className="flex items-center justify-start gap-4">
                 <img
                   className="w-[40px]"
-                  src={`${trip.bus.company.image}.jpeg`}
+                  src={`${trip.bus.company.image && trip.bus.company.image}.jpeg`}
                   alt=""
                 />
                 <p>{trip.bus.company.name}</p>

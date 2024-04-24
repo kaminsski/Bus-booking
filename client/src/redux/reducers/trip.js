@@ -5,6 +5,10 @@ const tripReducer = (state={tripRx:null},action) =>{
             return {
                 tripRx: action.payload
             }
+        case "GET_TRIPS_ALL":
+                return {
+                    tripRx: action.payload
+                }    
         
         case "LOAD_DATA":
             const storedData = JSON.parse(localStorage.getItem("trips"));

@@ -2,10 +2,10 @@ import axios from "axios";
 import { BASE_URL } from "../../config/env";
 
 export const loadTripAction = () => {
-    return {
-      type: "LOAD_DATA"
-    };
+  return {
+    type: "LOAD_DATA",
   };
+};
 
 export const getTripsAction =
   (fromWhere, toWhere, date) => async (dispatch) => {
@@ -21,13 +21,20 @@ export const getTripsAction =
     }
   };
 
-export const nullAction = () => async (dispatch) => {
+export const getTripsAllAction = () => async (dispatch) => {
   try {
-
-    dispatch({ type: "NULL", payload: null });
+    const response = await axios.get(`${BASE_URL}/trip`);
+    console.log(response);
+    dispatch({ type: "GET_TRIPS_ALL", payload: response.data });
   } catch (error) {
     console.log(error);
   }
 };
 
-
+export const nullAction = () => async (dispatch) => {
+  try {
+    dispatch({ type: "NULL", payload: null });
+  } catch (error) {
+    console.log(error);
+  }
+};
