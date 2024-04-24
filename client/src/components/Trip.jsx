@@ -69,7 +69,7 @@ useEffect(() => {
             </div>
             <div className=" flex items-center justify-between gap-4 flex-wrap">
               <div className="flex items-center justify-start gap-4">
-                <img
+                {trip.bus.company && <> <img
                   className="w-[40px]"
                   src={`${trip.bus.company.image && trip.bus.company.image}.jpeg`}
                   alt=""
@@ -80,7 +80,8 @@ useEffect(() => {
                 <p>{trip.bus.model}</p>
                 <MdEventSeat size={20} />
 
-                <p>{trip.bus.busType}</p>
+                <p>{trip.bus.busType}</p> </>}
+                
               </div>
               <Link to={`/ticket/${trip._id}`}>
                 {auth ? <button className=" p-2 bg-blue-400 text-white flex items-center gap-1 rounded-lg">
