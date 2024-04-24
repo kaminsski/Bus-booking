@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginAction, registerAction } from "../redux/actions/auth";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { FaUser } from "react-icons/fa";
 
 
 export default function Login() {
@@ -18,7 +20,6 @@ export default function Login() {
 
   const onChangeHandle = (e) => {
     setAuthData({ ...authData, [e.target.name]: e.target.value });
-    console.log(authData);
   };
 const handleSubmit = () =>{
    dispatch(loginAction(authData))
@@ -33,18 +34,20 @@ const handleSubmit = () =>{
      <div className="back min-h-screen p-5 flex justify-center"> 
          
 
-          <div className=" w-1/2">
+          <div className=" w-3/4 md:w-1/2">
           <h1 className="text-2xl text-white font-bold">{lang ? "Giriş Yap" : "Login"} </h1>
           <form>
-          <div className="flex flex-col space-y-3 my-5 ">
-          
+          <div className="flex flex-col space-y-3 my-5 relative">
+          <RiLockPasswordFill size={20} className="absolute left-1 top-[74px] text-gray-600"/>
+          <FaUser size={20} className="absolute left-1 top-2 text-gray-600"/>
+
             <input
               value={authData.username}
               name="username"
               onChange={onChangeHandle}
               type="text"
               placeholder={lang ? "Kullanıcı Adı" : "Username"}
-              className=" input p-2"
+              className=" input p-2 pl-8 rounded-lg"
               required
             />
 
@@ -55,7 +58,7 @@ const handleSubmit = () =>{
               onChange={onChangeHandle}
               type="password"
               placeholder={lang ? "Şifre" : "Password"}
-              className="input p-2"
+              className="input p-2 pl-8 rounded-lg"
             />
 
          

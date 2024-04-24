@@ -21,7 +21,6 @@ export default function Register() {
 
   const onChangeHandle = (e) => {
     setAuthData({ ...authData, [e.target.name]: e.target.value });
-    console.log(authData);
   };
 const handleSubmit = () =>{
    dispatch(registerAction(authData))

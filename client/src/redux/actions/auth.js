@@ -26,7 +26,6 @@ export const loadDataAction = () => {
 export const registerAction = (authData) => async(dispatch) =>{
     try {
         const response = await axios.post(`${BASE_URL}/auth/register`, authData);
-        console.log(response);
 
         await dispatch({type:"REGISTER", payload: response.data});
         window.location = "/"

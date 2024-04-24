@@ -15,7 +15,7 @@ const tripReducer = (state={tripRx:null},action) =>{
             
         case "NULL":
             return {
-                tripRx: [...state.brands ,action.payload]
+                tripRx: action.payload
             
             }    
  

@@ -4,6 +4,7 @@ import {thunk} from "redux-thunk"
 import authReducer from "./reducers/auth"
 import langReducer from "./reducers/lang"
 import tripReducer from "./reducers/trip"
+import loaderReducer from "./reducers/loader"
 const intialState = {
 
 }
@@ -11,6 +12,8 @@ const intialState = {
 const reducers = combineReducers({
     auth :authReducer,
     lang: langReducer,
+    loader: loaderReducer,
+
     tripRx : tripReducer,
 
 

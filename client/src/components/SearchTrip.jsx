@@ -22,7 +22,6 @@ function SearchTrip() {
 
   const today = new Date().toISOString().split("T")[0];
 
-  console.log(tripRx);
 
   useEffect(() => {
     const getProvinces = async () => {
@@ -41,6 +40,8 @@ function SearchTrip() {
 
   const handleSearch = async () => {
     try {
+    dispatch({ type: "LOADER", payload: true })
+
       const response = await axios.post(`${BASE_URL}/trip/filterTrip`, {
         fromWhere,
         toWhere,
@@ -48,8 +49,12 @@ function SearchTrip() {
       });
       dispatch(getTripsAction(fromWhere, toWhere, date));
       localStorage.setItem("trips", JSON.stringify(response.data.data));
+    dispatch({ type: "LOADER", payload: false })
+
     } catch (error) {
       console.error("Arama işlemi başarısız oldu:", error);
+    dispatch({ type: "LOADER", payload: false })
+
     }
   };
 
@@ -64,20 +69,20 @@ function SearchTrip() {
         <div className="relative">
           <FaLocationDot className="absolute left-1 top-4"></FaLocationDot>
           <label
-            className="absolute left-2 -top-2 bg-white text-sm"
+            className="absolute left-2 -top-2 bg-white text-sm dark:bg-black dark:text-white"
             htmlFor="fromWhere"
           >
             {" "}
             {lang ? "Nereden" : "From"}{" "}
           </label>
           <select
-            className="border-2 p-3 rounded-xl border-gray-500 pl-5"
+            className="border-2 p-3 rounded-xl border-gray-500 pl-5 dark:bg-black w-[300px] md:w-full"
             name="fromWhere"
             id="fromWhere"
             value={fromWhere}
             onChange={(e) => setFromWhere(e.target.value)}
           >
-            <option value="">Select an option</option>
+            <option value="">{ lang ? "Seç":"Select "}</option>
             {provinces &&
               provinces.map((province, id) => (
                 <option key={id} value={province.name}>
@@ -89,14 +94,14 @@ function SearchTrip() {
         <FaExchangeAlt
           onClick={reverseProvince}
           size={40}
-          className="bg-blue-400 rounded-full p-2 text-white my-1 sm:my-0 rotate-90 sm:rotate-0"
+          className="bg-blue-400 rounded-full p-2 text-white  rotate-90 sm:rotate-0"
         />
 
         <div className="relative">
           <FaLocationDot className="absolute left-1 top-4"></FaLocationDot>
 
           <label
-            className="absolute left-2 -top-2 bg-white text-sm"
+            className="absolute left-2 -top-2 bg-white text-sm dark:bg-black dark:text-white"
             htmlFor="toWhere"
           >
             {" "}
@@ -104,13 +109,13 @@ function SearchTrip() {
           </label>
 
           <select
-            className="border-2 p-3 rounded-xl border-gray-500 pl-5"
+            className="border-2 p-3 rounded-xl border-gray-500 pl-5 dark:bg-black w-[300px] md:w-full"
             name="toWhere"
             id="toWhere"
             value={toWhere}
             onChange={(e) => setToWhere(e.target.value)}
           >
-            <option value="">Select an option</option>
+            <option className="" value="">{ lang ? "Seç":"Select "}</option>
             {provinces &&
               provinces.map((province, id) => (
                 <option key={id} value={province.name}>
@@ -121,7 +126,7 @@ function SearchTrip() {
         </div>
         <div className="relative">
           <label
-            className="absolute left-2 -top-2 bg-white text-sm"
+            className="absolute left-2 -top-2 bg-white text-sm dark:bg-black dark:text-white"
             htmlFor="date"
           >
             {" "}
@@ -129,13 +134,14 @@ function SearchTrip() {
           </label>
 
           <input
-            className="border-2 p-3 rounded-xl border-gray-500"
+            className="border-2 p-3 rounded-xl border-gray-500 dark:bg-black w-[300px] md:w-full"
             type="date"
             name="date"
             id="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            min={today} // Min attribute ile bugünkü tarihi belirt
+            min={today}
+            placeholder="Departure"
           />
         </div>
         <button

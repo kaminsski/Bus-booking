@@ -45,7 +45,6 @@ const Navbar = () => {
     }
   };
   const logoutFunc = () => {
-    console.log("çalıştı");
     dispatch(logoutAction());
   };
 
@@ -65,14 +64,15 @@ const Navbar = () => {
 
           {lang ? "Anasayfa" : "Home"}
         </Link>
-        <Link
+        {auth ?  <Link
           to="/profile"
           className="p-4 hover:bg-[#00df9a] rounded-xl m-2 cursor-pointer duration-300 hover:text-black flex items-center gap-1"
         >
           <CgProfile />
 
           {lang ? "Profil" : "Profile"}
-        </Link>
+        </Link>: null}
+       
         {auth === null ? (
           <Link
             to="/register"
@@ -144,10 +144,11 @@ const Navbar = () => {
           <IoMdHome />
           {lang ? "Anasayfa" : "Home"}
         </Link>
-        <Link to="/profile" className="p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600 flex items-center gap-1 text-lg font-bold">
+        {auth ? <Link to="/profile" className="p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600 flex items-center gap-1 text-lg font-bold">
           <CgProfile />
           {lang ? "Profil" : "Profile"}
-        </Link>
+        </Link>: null}
+        
         {auth === null ? <Link to="/register" className="p-4 border-b rounded-xl hover:bg-[#00df9a] duration-300 hover:text-black cursor-pointer border-gray-600 flex items-center gap-1 text-lg font-bold">
           <IoLogIn />
           {lang ? "Kayıt ol" : "Register"}

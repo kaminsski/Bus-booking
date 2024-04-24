@@ -30,7 +30,6 @@ function BusModal({
    
     
   };
-  console.log(busType);
   return (
     <>
       <div className="bg-gray-200 bg-opacity-75 absolute left-0 right-0 top-0 bottom-0 flex justify-center items-center">
@@ -48,7 +47,7 @@ function BusModal({
               >
                 {busType === "2+2" ? (
                   <>
-                    <div className="double flex">
+                    <div className="double flex  dark:text-black">
                       <MdChair
                         onClick={(e) => seatFunc(e)}
                         id={`${index}-1`}
@@ -60,7 +59,7 @@ function BusModal({
                         size={30}
                       />
                     </div>
-                    <div className="double flex">
+                    <div className="double flex dark:text-black">
                       <MdChair
                         onClick={(e) => seatFunc(e)}
                         id={`${index}-3`}
@@ -75,7 +74,7 @@ function BusModal({
                   </>
                 ) : (
                   <>
-                    <div className="single">
+                    <div className="single dark:text-black">
                       <MdChair
                         className=""
                         onClick={(e) => seatFunc(e)}
@@ -83,7 +82,7 @@ function BusModal({
                         size={30}
                       />
                     </div>
-                    <div className="double flex">
+                    <div className="double flex dark:text-black">
                       <MdChair
                         onClick={(e) => seatFunc(e)}
                         id={`${index}-2`}

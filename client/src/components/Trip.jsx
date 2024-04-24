@@ -5,10 +5,15 @@ import { MdEventSeat } from "react-icons/md";
 import { FaClock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoIosWarning } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { SlLogin } from "react-icons/sl";
 
 function Trip() {
+  const dispatch = useDispatch();
+
   const { auth } = useSelector((state) => state.auth);
+  const { lang } = useSelector((state) => state.lang);
+
   const { tripRx } = useSelector((state) => state.tripRx);
 
   return (
@@ -16,8 +21,8 @@ function Trip() {
       {tripRx === null ? (
         null
       ) : tripRx && tripRx.length === 0 ? (
-        <div className=" w-full  md:w-1/3 flex mx-auto text-center bg-yellow-300 p-3 font-bold items-center"><IoIosWarning size={30}/>
-        The trip you were looking for was not found</div>
+        <div className=" w-full  md:w-1/3 flex mx-auto text-center dark:text-black bg-yellow-300 p-3 font-bold items-center"><IoIosWarning size={30}/>
+       { lang ? "Size uygun bir yolculuk bulunamadı":"The trip you were looking for was not found "} </div>
       ) : (
         tripRx &&
         tripRx.map((trip, id) => (
@@ -35,7 +40,7 @@ function Trip() {
                 {/* Sol çizgi */}
                 <div className="flex px-4">
                   <FaClock size={25}></FaClock>
-                  <p className="px-1">{trip.hour}:00 saat</p>
+                  <p className="px-1">{trip.hour}:00 { lang ? "saat":"hour "}</p>
                 </div>
                 <div className=" border-t-4  w-full mt-3"></div>{" "}
                 {/* Sağ çizgi */}
@@ -71,14 +76,19 @@ function Trip() {
                 <p>{trip.bus.busType}</p>
               </div>
               <Link to={`/ticket/${trip._id}`}>
-                {auth && <button className=" p-2 bg-blue-400 text-white flex items-center gap-1 rounded-lg">
-                  <BiSolidPurchaseTag size={30} /> Bilet Al
-                </button>}
+                {auth ? <button className=" p-2 bg-blue-400 text-white flex items-center gap-1 rounded-lg">
+                  <BiSolidPurchaseTag size={30} /> { lang ? "Bilet Al":"Buy"}
+                </button>:
+                <Link to="/register" className=" p-2 bg-blue-400 text-white flex items-center gap-1 rounded-lg">
+                <SlLogin size={30} /> { lang ? "Kayıt ol":"Register "}
+              </Link>
+                }
                 
               </Link>
             </div>
           </div>
-        ))
+   
+  ))
       )}
     </div>
   );
