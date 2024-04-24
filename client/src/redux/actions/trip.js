@@ -24,6 +24,8 @@ export const getTripsAction =
 export const getTripsAllAction = () => async (dispatch) => {
   try {
     const response = await axios.get(`${BASE_URL}/trip`);
+    localStorage.setItem("trips", JSON.stringify(response.data));
+
     console.log(response);
     dispatch({ type: "GET_TRIPS_ALL", payload: response.data });
   } catch (error) {
