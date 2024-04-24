@@ -8,11 +8,14 @@ import BusModal from "../components/BusModal";
 import { MdChair } from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
 import { nullAction } from "../redux/actions/trip";
+import { useNavigate } from 'react-router-dom';
 
 function Ticket() {
   const [trip, setTrip] = useState(null);
   const [busModal, setBusModal] = useState(false);
   const [seatOcc, setSeatOcc] = useState(null);
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch()
 
@@ -89,7 +92,8 @@ function Ticket() {
       });
       localStorage.removeItem("trips");
       dispatch(nullAction())
-      window.location.href="/profile"
+      navigate('/profile')
+   
       
     } catch (error) {
       console.log(error);
