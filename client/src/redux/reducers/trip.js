@@ -18,17 +18,7 @@ const tripReducer = (state={tripRx:null},action) =>{
                 tripRx: [...state.brands ,action.payload]
             
             }    
-        case "DELETE_BRAND":
-            return {
-                tripRx: [...state.brands.filter((post) => post._id !== action.payload)]
-            
-            }   
-
-        case "UPDATE_BRAND":
-            return {
-                tripRx: [...state.brands.map(brand => brand._id === action.payload._id ? action.payload : brand)]
-            
-            }   
+ 
             
     
         default:

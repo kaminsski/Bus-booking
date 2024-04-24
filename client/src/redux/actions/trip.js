@@ -30,23 +30,4 @@ export const nullAction = () => async (dispatch) => {
   }
 };
 
-export const createPostAction = (postData) => async (dispatch) => {
-  try {
-    const data = await axios.post("http://localhost:5002/createpost", postData);
-    dispatch({ type: "CREATE_POST", payload: data.data });
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-export const updatePostAction = (id, postData) => async (dispatch) => {
-  try {
-    const data = await axios.patch(
-      `http://localhost:5002/updatepost/${id}`,
-      postData
-    );
-    dispatch({ type: "UPDATE_POST", payload: data.data });
-  } catch (error) {
-    console.log(error);
-  }
-};
