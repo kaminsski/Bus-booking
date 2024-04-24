@@ -67,7 +67,12 @@ const getTrips = async(req,res) =>{
     try {
 
         const response = await Trip.find().populate({
-          path: 'bus'})
+          path: 'bus',
+          populate: {
+            path: 'company',
+            model: 'Company' 
+          }
+        })
         res.json(response)
     } catch (error) {
         console.log(error);
