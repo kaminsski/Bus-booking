@@ -9,7 +9,8 @@ https://bus-booking-91da.vercel.app/
 * Login/Register
 * Buying a bus ticket
 * Search trip
-* Purchase
+* Dark/Light mode
+* Language selection
 
 
 
