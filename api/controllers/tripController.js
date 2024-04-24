@@ -63,7 +63,7 @@ const getTrip = async(req,res) =>{
 }
 
 
-const getTrips = async(req,res) =>{
+const getTripsAll = async(req,res) =>{
     try {
 
         const response = await Trip.find().populate({
@@ -118,5 +118,5 @@ const updateTrip= async(req,res) =>{
 }
 
 module.exports={
-    updateTrip, deleteTrip, postTrip, getTrips, filterTrip, getTrip
+    updateTrip, deleteTrip, postTrip, getTripsAll, filterTrip, getTrip
 }

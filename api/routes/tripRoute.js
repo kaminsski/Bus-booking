@@ -1,9 +1,9 @@
 const express = require('express');
-const { getTrips, postTrip, deleteTrip, updateTrip, filterTrip, getTrip } = require("../controllers/tripController");
+const { getTripsAll, postTrip, deleteTrip, updateTrip, filterTrip, getTrip } = require("../controllers/tripController");
 
 const router = express.Router();
 
-router.get("/", getTrips); 
+router.get("/getAll", getTripsAll); 
 router.get("/:id", getTrip); 
 
 router.post("/filterTrip", filterTrip); 
