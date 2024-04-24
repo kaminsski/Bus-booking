@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.back{
+    background-image: url('../public/background.jpeg');
+    background-size: cover;
+    background-position: center;
+
+  }
+
+  .lugrasimo-regular {
+    font-family: "Lugrasimo", cursive;
+    font-weight: 800;
+    font-style: normal;
+  }
+  
