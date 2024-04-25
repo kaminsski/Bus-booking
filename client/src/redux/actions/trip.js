@@ -23,7 +23,7 @@ export const getTripsAction =
 
 export const getTripsAllAction = () => async (dispatch) => {
   try {
-    const response = await axios.get(`${BASE_URL}/trip`);
+    const response = await axios.get(`${BASE_URL}/trip/getAll`);
     localStorage.setItem("trips", JSON.stringify(response.data));
 
     console.log(response);
