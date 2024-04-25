@@ -3,7 +3,7 @@
  You can search for bus schedules on this website. You can buy tickets from different companies and buses.
 
 ## Link
-https://bus-booking-91da.vercel.app/
+https://bus-booking-lilac.vercel.app/
 
 ## Functions/features of the website
 * Login/Register
